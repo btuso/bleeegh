@@ -17,6 +17,7 @@ public class ConnectionSceneLoader implements ConnectionListener {
         this.scene = scene;
     }
 
+    @Override
     public void connectionAdded(Server server, HostedConnection conn) {
         SceneInfo sceneInfo = new SceneInfo();
 
@@ -28,8 +29,8 @@ public class ConnectionSceneLoader implements ConnectionListener {
         }
 
         sceneInfo.setNodes(nodeInfos);
-
-        conn.send(new WorldLoadMessage(scene.getName(), sceneInfo));
+        sceneInfo.setName(scene.getName());
+        conn.send(new WorldLoadMessage(sceneInfo));
     }
 
     private NodeInfo mapSpatialToNodeInfo(Spatial s) {
@@ -42,6 +43,7 @@ public class ConnectionSceneLoader implements ConnectionListener {
         return nodeInfo;
     }
 
+    @Override
     public void connectionRemoved(Server server, HostedConnection conn) {
     }
 

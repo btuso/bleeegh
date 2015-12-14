@@ -7,8 +7,10 @@ import com.jme3.network.serializing.Serializer;
 import com.jme3.scene.Node;
 import com.jme3.system.JmeContext;
 import java.io.IOException;
+import mygame.messages.server.SceneUpdateMessage;
 import mygame.messages.server.WorldLoadMessage;
 import mygame.scenes.ForestScene;
+import mygame.states.UpdateBroadcaster;
 
 public class ServerMain extends SimpleApplication {
 
@@ -25,6 +27,7 @@ public class ServerMain extends SimpleApplication {
             registerMessages();
             loadWorldState();
             startServer();
+            this.getStateManager().attach(new UpdateBroadcaster(myServer, rootNode, 20));
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
@@ -34,6 +37,7 @@ public class ServerMain extends SimpleApplication {
         Serializer.registerClass(WorldLoadMessage.class);
         Serializer.registerClass(SceneInfo.class);
         Serializer.registerClass(NodeInfo.class);
+        Serializer.registerClass(SceneUpdateMessage.class);
     }
 
     private void loadWorldState() {

@@ -7,8 +7,13 @@ import java.util.List;
 public class SceneInfo {
 
     private List<NodeInfo> nodes;
+    private String name;
 
     public SceneInfo() {
+    }
+
+    public SceneInfo(String name) {
+        this.name = name;
     }
 
     public List<NodeInfo> getNodes() {
@@ -18,4 +23,13 @@ public class SceneInfo {
     public void setNodes(List<NodeInfo> nodes) {
         this.nodes = nodes;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
 }

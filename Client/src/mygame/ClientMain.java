@@ -7,6 +7,7 @@ import com.jme3.network.Network;
 import com.jme3.network.serializing.Serializer;
 import com.jme3.system.JmeContext;
 import java.io.IOException;
+import mygame.messages.server.SceneUpdateMessage;
 
 public class ClientMain extends SimpleApplication {
 
@@ -31,6 +32,7 @@ public class ClientMain extends SimpleApplication {
         Serializer.registerClass(WorldLoadMessage.class);
         Serializer.registerClass(SceneInfo.class);
         Serializer.registerClass(NodeInfo.class);
+        Serializer.registerClass(SceneUpdateMessage.class);
     }
 
     private void startClientConnection() throws IOException {
